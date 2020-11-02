@@ -28,5 +28,15 @@ module.exports = {
         }
         req.session.user = foundUser[0]
         res.status(202).send(req.session.user)
+    },
+
+    getGeneral: (req, res) => {
+        const db = req.app.get('db')
+        db.get_recipes()
+            .then(recipes => res.status(200).send(recipes))
+            .catch(err => {
+                res.status(500).send({errorMessage: 'Sorry! Something went wrong on our end.'});
+                console.log(err)
+            });
     }
 }
