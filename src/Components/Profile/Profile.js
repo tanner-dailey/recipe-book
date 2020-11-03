@@ -1,4 +1,3 @@
-import userEvent from '@testing-library/user-event';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 

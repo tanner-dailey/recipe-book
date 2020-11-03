@@ -30,7 +30,7 @@ module.exports = {
         res.status(202).send(req.session.user)
     },
 
-    getGeneral: (req, res) => {
+    getGeneral: async (req, res) => {
         const db = req.app.get('db')
         db.get_recipes()
             .then(recipes => res.status(200).send(recipes))
