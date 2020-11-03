@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 class Profile extends Component {
     render(){
+        console.log(this.props)
         return(
             <div>
                 <p>{this.props.user.email}</p>
