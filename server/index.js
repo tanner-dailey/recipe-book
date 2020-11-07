@@ -34,8 +34,8 @@ app.get('*', (req, res) => {
 app.post('/api/register', ctrl.register)
 app.post('/api/login', ctrl.login)
 
-app.post('/api/general', ctrl.getMyBook)
-app.post('/api/myBook', ctrl.getMyBook)
+app.post('/api/general', ctrl.getRecipes)
+app.post('/api/myBook', ctrl.getRecipes)
 app.post('/api/single', ctrl.getSingle)
 
 app.listen(port, () => console.log(`Server running on port ${port}`));

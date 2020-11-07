@@ -30,20 +30,10 @@ module.exports = {
         res.status(202).send(req.session.user)
     },
 
-    getGeneral: async (req, res) => {
-        const db = req.app.get('db')
-        db.get_recipes()
-            .then(recipes => res.status(200).send(recipes))
-            .catch(err => {
-                res.status(500).send({errorMessage: 'Sorry! Something went wrong on our end.'});
-                console.log(err)
-            });
-    },
-
-    getMyBook: async (req, res) => {
+    getRecipes: async (req, res) => {
         const {user_id} = req.body
         const db = req.app.get('db')
-        db.get_my_recipes({user_id})
+        db.get_recipes({user_id})
             .then(recipes => res.status(200).send(recipes))
             .catch(err => {
                 res.status(500).send({errorMessage: 'Sorry! Something went wrong on our end.'});
