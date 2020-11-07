@@ -11,14 +11,13 @@ class General extends Component {
         this.state = {
             recipes: []
         }
-
-        // axios.defaults.baseURL = ''
     }
     
     async componentDidMount(){
-       const res = await axios.get('/api/general')
-       this.setState({recipes: res.data})
-        console.log(this.state.recipes)
+      const user_id = '1';
+      const res = await axios.post('/api/general', {user_id})
+     this.setState({recipes: res.data})
+      console.log(this.state.recipes)
     }
 
     render(){

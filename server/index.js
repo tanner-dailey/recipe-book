@@ -34,7 +34,7 @@ app.get('*', (req, res) => {
 app.post('/api/register', ctrl.register)
 app.post('/api/login', ctrl.login)
 
-app.get('/api/general', ctrl.getGeneral)
+app.post('/api/general', ctrl.getMyBook)
 app.post('/api/myBook', ctrl.getMyBook)
 app.post('/api/single', ctrl.getSingle)
 
