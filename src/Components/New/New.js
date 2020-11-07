@@ -35,6 +35,7 @@ class New extends Component {
                 ings: e.target.value
             }
         }))
+        console.log(this.state.recipe.ings)
     }
 
     stepInput(e){
