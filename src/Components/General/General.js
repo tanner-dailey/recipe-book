@@ -12,6 +12,7 @@ class General extends Component {
             recipes: []
         }
 
+        // axios.defaults.baseURL = ''
     }
     
     async componentDidMount(){
