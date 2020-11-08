@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import './single.scss';
 
 class Single extends Component {
     constructor(){
@@ -12,6 +13,7 @@ class Single extends Component {
             steps: [],
             isEditing: false
         }
+        this.deleteStep = this.deleteStep.bind(this)
     }
     async componentDidMount(){
         const url = this.props.location.pathname;
@@ -29,6 +31,39 @@ class Single extends Component {
         } else {
             this.setState({isEditing: false})
         }
+    }
+
+    addIng(){
+        const ingArr = [...this.state.ings, '']
+        this.setState({ings: ingArr})
+    }
+
+    ingInput(i, e){
+        const ingArr = [...this.state.ings]
+        ingArr[i] = e.target.value
+        this.setState({ings: ingArr})
+        console.log(this.state.ings)
+    }
+
+    stepInput(i, e){
+        const stepArr = [...this.state.steps]
+        stepArr[i] = e.target.value
+        this.setState({steps: stepArr})
+        console.log(this.state.steps)
+    }
+
+    addStep(){
+        const stepArr = [...this.state.steps, '']
+        this.setState({steps: stepArr})
+    };
+
+    deleteStep(i){
+        // console.log(i)
+        let stepArr = [...this.state.steps]
+        stepArr.splice(i, 1)
+        this.setState({steps: stepArr})
+        console.log(stepArr)
+        console.log('test')
     }
 
     render(){
@@ -60,18 +95,19 @@ class Single extends Component {
                             <button onClick={() => this.toggleEdit()}>Edit Recipe</button>
                         <h3>Ingredients</h3>
                         <ul>
-                            {this.state.ings.map((el, key) => 
-                                <li key={key}>{el}</li>
+                            {this.state.ings.map((el, i) => 
+                                <li key={`ings-${i}`}><input type='text' value={this.state.ings[i]} onChange={e => this.ingInput(i, e)}></input><button>Delete</button></li>
+                                
                             )}
                         </ul>
-                        <input></input>
+                        <button onClick={() => this.addIng()}>Add Ingredient</button>
                         <h3>Instructions</h3> 
                         <ol>
-                            {this.state.steps.map((el, key) => 
-                                <li key={key}>{el}</li>
+                            {this.state.steps.map((el, i) => 
+                                <li key={`steps-${i}`}><input type='text' value={this.state.steps[i]} onChange={e => this.stepInput(i, e)}></input><button className='deleteButton' key={`stepDelete-${i}`} onClick={() => this.deleteStep(i)}>Delete</button></li>
                             )}
                         </ol>
-                        <input></input>
+                        <button onClick={() => this.addStep()}>Add Step</button>
                         </div>)
                     }
             </div>

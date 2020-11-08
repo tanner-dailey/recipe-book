@@ -5,83 +5,68 @@ class New extends Component {
         super();
 
         this.state = {
-            recipe: {
-                title: '',
-                ings: [''],
-                steps: ['']
-            }
+            title: '',
+            ings: [''],
+            steps: ['']
         }
         this.addIng = this.addIng.bind(this)
         this.addStep = this.addStep.bind(this)
         this.ingInput = this.ingInput.bind(this)
         this.stepInput = this.stepInput.bind(this)
+        this.titleInput = this.titleInput.bind(this)
     }
 
-    addIng = () => {
-        const ingArr = [...this.state.recipe.ings, '']
-        this.setState(prevState => ({
-            recipe: {
-                ...prevState.recipe,
-                ings: ingArr
-            }
-        }))
-        console.log(this.state.recipe.ings)
+    titleInput(e){
+        this.setState({title: e.target.value})
+        console.log(this.state.title)
     }
 
-    ingInput(e){
-        this.setState(prevState => ({
-            recipe: {
-                ...prevState.recipe,
-                ings: e.target.value
-            }
-        }))
-        console.log(this.state.recipe.ings)
+    addIng(){
+        const ingArr = [...this.state.ings, '']
+        this.setState({ings: ingArr})
     }
 
-    stepInput(e){
-        this.setState(prevState => ({
-            recipe: {
-                ...prevState.recipe,
-                steps: e.target.value
-            }
-        }))
+    ingInput(i, e){
+        const ingArr = [...this.state.ings]
+        ingArr[i] = e.target.value
+        this.setState({ings: ingArr})
+        console.log(this.state.ings)
     }
 
-    addStep = () => {
-        const stepArr = [...this.state.recipe.steps, '']
-        this.setState(prevState => ({
-            recipe: {
-                ...prevState.recipe,
-                steps: stepArr
-            }
-        }))
-        console.log(this.state.recipe.steps)
+    stepInput(i, e){
+        const stepArr = [...this.state.steps]
+        stepArr[i] = e.target.value
+        this.setState({steps: stepArr})
+        console.log(this.state.steps)
     }
 
+    addStep(){
+        const stepArr = [...this.state.steps, '']
+        this.setState({steps: stepArr})
+    };
+    
     render(){
         return(
             <div>
                 <h3>Title</h3>
-                <form>
-                    <input type='text' />
-                </form>
+                <div>
+                    <input type='text' value={this.state.title} onChange={this.titleInput}></input>
+                </div>
                 <h3>Ingredients</h3>
-                {this.state.recipe.ings.map((el, i) => 
-                        <form>
-                            <input type='text' defaultValue={el} key={i} onChange={() => this.ingInput}></input>
-                            <button>Delete</button>
-                        </form>
-                    )}
+                {this.state.ings.map((el, i) => 
+                    <div key={`ing-${i}`}>
+                        <input type='text' value={this.state.ings[i]} onChange={e => this.ingInput(i, e)}></input>
+                        <button>Delete</button>
+                    </div>
+                )}
                 <button onClick={() => this.addIng()}>Add Ingredient</button>
                 <h3>Steps</h3>
-                <form>
-                {this.state.recipe.steps.map((el, i) => 
-                        <form>
-                            <input type='text' defaultValue={el} key={i} onChange={() => this.stepInput}></input>
-                            <button>Delete</button>
-                        </form>
-                    )}
-                </form>
+                {this.state.steps.map((el, i) => 
+                    <div key={`step-${i}`}>
+                        <input type='text' value={this.state.steps[i]} onChange={e => this.stepInput(i, e)}></input>
+                        <button>Delete</button>
+                    </div>
+                )}
                 <button onClick={() => this.addStep()}>Add Step</button>
             </div>
         )
