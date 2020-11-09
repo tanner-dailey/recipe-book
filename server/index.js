@@ -77,5 +77,6 @@ app.delete('/api/recipes/:id', ctrl.delete)
 app.post('/api/recipes', ctrl.addRecipe)
 app.post('/api/recipeId', ctrl.getRecId)
 app.post('/api/newIngs', ctrl.addIngs)
+app.put('/api/newIngs', ctrl.addIngs)
 
 app.listen(port, () => console.log(`Server running on port ${port}`));

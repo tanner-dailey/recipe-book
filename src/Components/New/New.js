@@ -74,15 +74,19 @@ class New extends Component {
         .then(
             axios.post('/api/recipeId', {title: this.state.title})
             .then((res) => {
-                this.setState({recipe_id: res.data[0].recipe_id})
-                console.log(this.state.recipe_id)
+                this.setState({recipe_id: res.data[0].recipe_id},()=>{
+
+                    console.log(this.state.recipe_id)
+                    const ingArr = [...this.state.ings]
+                    const id = this.state.recipe_id
+                    ingArr.map((el, i) => {
+                        axios.post('/api/newIngs', {ing: el, recipe_id: id})
+                        console.log(this.state.recipe_id)
+                    })
+                })
             })
         )
         
-        this.state.ings.map((el, i) => {
-            axios.post('/api/newIngs', {ing: el, recipe_id: this.state.recipe_id})
-            console.log(this.state.recipe_id)
-        })
     }
     
     render(){

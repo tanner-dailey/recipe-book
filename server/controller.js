@@ -56,6 +56,7 @@ module.exports = {
 
     addIngs: async (req, res) => {
         const {ing, recipe_id} = req.body
+        console.log(req.body)
         const db = req.app.get('db')
         db.add_ings({ing, recipe_id})
         .then((ings) => {

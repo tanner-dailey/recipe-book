@@ -36,6 +36,7 @@ class Single extends Component {
 
     addIng(){
         const ingArr = [...this.state.ings, '']
+        axios.put('/api/newIngs', {ing: '', recipe_id: this.state.id})
         this.setState({ings: ingArr})
     }
 
