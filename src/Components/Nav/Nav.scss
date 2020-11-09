@@ -1,0 +1,25 @@
+.nav {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav h1 {
+    margin-left: 2%;
+}
+
+.links {
+    width: 30%;
+    display: flex;
+    justify-content: space-evenly;
+    // background-color: white;
+    color: white;
+}
+
+.ind-link {
+    color: white;
+}
+
+.ind-link:hover {
+    color: gray;
+}

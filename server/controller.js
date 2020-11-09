@@ -41,6 +41,30 @@ module.exports = {
             });
     },
 
+    addRecipe: async (req, res) => {
+        const {user_id, title} = req.body
+        const db = req.app.get('db')
+        db.add_recipe({user_id, title})
+            .then((recipe) => {
+                res.status(200).send(recipe)
+            })
+            .catch(err => {
+                res.status(500).send({errorMessage: 'Sorry! Something went wrong on our end.'});
+                console.log(err)
+            });
+    },
+
+    getRecId: async (req, res) => {
+        const {title} = req.body
+        const db = req.app.get('db')
+        db.get_rec_id({title})
+            .then(recId => res.status(200).send(recId))
+            .catch(err => {
+                res.status(500).send({errorMessage: 'Sorry! Something went wrong on our end.'});
+                console.log(err)
+            });
+    },
+
     getSingle: async (req, res) => {
         const {id} = req.body
         const db = req.app.get('db')

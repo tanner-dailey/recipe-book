@@ -22,16 +22,18 @@ class General extends Component {
 
     render(){
       return(
+        <div className='general'>
         <div className='container'>
           {this.state.recipes.map(el => (
             <Card className='col-sm-3'>
-              <Card.Img variant="top" src="https://via.placeholder.com/100" />
+              <Card.Img className='rec-img' variant="top" src="https://rec-book-images.s3-us-west-1.amazonaws.com/recipe-default.jpg" />
               <Card.Body>
                 <Card.Title>{el.title}</Card.Title>
                 <Link to={`/recipe/:${el.recipe_id}`}>Go To Recipe</Link>
               </Card.Body>
             </Card>
           ))}
+        </div>
         </div>
       )
     }

@@ -14,6 +14,7 @@ class Single extends Component {
             isEditing: false
         }
         this.deleteStep = this.deleteStep.bind(this)
+        this.deleteIng = this.deleteIng.bind(this)
     }
     async componentDidMount(){
         const url = this.props.location.pathname;
@@ -43,6 +44,15 @@ class Single extends Component {
         ingArr[i] = e.target.value
         this.setState({ings: ingArr})
         console.log(this.state.ings)
+    }
+
+    deleteIng(i){
+        // console.log(i)
+        let ingArr = [...this.state.ings]
+        ingArr.splice(i, 1)
+        this.setState({ings: ingArr})
+        console.log(ingArr)
+        console.log('test')
     }
 
     stepInput(i, e){
@@ -96,7 +106,7 @@ class Single extends Component {
                         <h3>Ingredients</h3>
                         <ul>
                             {this.state.ings.map((el, i) => 
-                                <li key={`ings-${i}`}><input type='text' value={this.state.ings[i]} onChange={e => this.ingInput(i, e)}></input><button>Delete</button></li>
+                                <li key={`ings-${i}`}><input type='text' value={this.state.ings[i]} onChange={e => this.ingInput(i, e)}></input><button className='deleteButton' key={`ingDelete-${i}`} onClick={() => this.deleteIng(i)}>Delete</button></li>
                                 
                             )}
                         </ul>

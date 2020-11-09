@@ -25,6 +25,7 @@ class Personal extends Component {
     render(){
       return(
         <div className='container'>
+          <button><Link to={`/new`}>Add New Recipe</Link></button>
           {this.state.recipes.map(el => (
             <Card className='col-sm-3'>
               <Card.Img variant="top" src="https://via.placeholder.com/100" />
