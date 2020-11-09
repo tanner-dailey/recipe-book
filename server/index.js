@@ -8,7 +8,6 @@ const express = require('express'),
       session = require('express-session'),
       {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env,
       port = SERVER_PORT,
-      path = require('path'),
       app = express();
 
 app.use(express.json());
@@ -74,7 +73,9 @@ app.post('/api/single', ctrl.getSingle)
 
 app.post('/api/email', mCtrl.email)
 
+app.delete('/api/recipes/:id', ctrl.delete)
 app.post('/api/recipes', ctrl.addRecipe)
 app.post('/api/recipeId', ctrl.getRecId)
+app.post('/api/newIngs', ctrl.addIngs)
 
 app.listen(port, () => console.log(`Server running on port ${port}`));

@@ -78,6 +78,11 @@ class New extends Component {
                 console.log(this.state.recipe_id)
             })
         )
+        
+        this.state.ings.map((el, i) => {
+            axios.post('/api/newIngs', {ing: el, recipe_id: this.state.recipe_id})
+            console.log(this.state.recipe_id)
+        })
     }
     
     render(){

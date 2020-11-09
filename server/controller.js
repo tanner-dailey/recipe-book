@@ -54,6 +54,19 @@ module.exports = {
             });
     },
 
+    addIngs: async (req, res) => {
+        const {ing, recipe_id} = req.body
+        const db = req.app.get('db')
+        db.add_ings({ing, recipe_id})
+        .then((ings) => {
+            res.status(200).send(ings)
+        })
+        .catch(err => {
+            res.status(500).send({errorMessage: 'Sorry! Something went wrong on our end.'});
+            console.log(err)
+        });
+    },
+
     getRecId: async (req, res) => {
         const {title} = req.body
         const db = req.app.get('db')
@@ -63,6 +76,12 @@ module.exports = {
                 res.status(500).send({errorMessage: 'Sorry! Something went wrong on our end.'});
                 console.log(err)
             });
+    },
+
+    delete: (req, res) => {
+        const {id} = req.params
+        const db = req.app.get('db')
+        db.delete({id}).then(res.sendStatus(200))
     },
 
     getSingle: async (req, res) => {
